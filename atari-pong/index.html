@@ -1,0 +1,239 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Postmortem</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="koneko096" /><meta property="og:title" content="Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient" />
+<meta property="og:description" content="This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koneko096.github.io/staging/atari-pong/" />
+<meta property="article:published_time" content="2018-01-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-01-12T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient"/>
+<meta name="twitter:description" content="This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem."/>
+
+<meta name="generator" content="Hugo 0.66.0" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://koneko096.github.io/staging/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://koneko096.github.io/staging/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://koneko096.github.io/staging/">Postmortem</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://www.facebook.com/icalFikr" title="Facebook">
+               <i class="fab fa-facebook fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://github.com/koneko096" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://gitlab.com/icalF" title="GitLab">
+               <i class="fab fa-gitlab fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/koneko096" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://linkedin.com/in/afrizalf" title="LinkedIn">
+               <i class="fab fa-linkedin fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://koneko096.github.io/staging/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://koneko096.github.io/staging/faq/">
+                <i class="fa-li fa  fa-lg"></i><span>FAQ</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2018-01-12T00:00:00Z">Jan 12, 2018</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://koneko096.github.io/staging/categories/artificial-intelligence">artificial intelligence</a>
+                
+                    , 
+                    <a href="https://koneko096.github.io/staging/categories/machine-learning">machine learning</a>
+                
+                    , 
+                    <a href="https://koneko096.github.io/staging/categories/experiment">experiment</a>
+                
+                    , 
+                    <a href="https://koneko096.github.io/staging/categories/deep-learning">deep learning</a>
+                
+                    , 
+                    <a href="https://koneko096.github.io/staging/categories/reinforcement-learning">reinforcement learning</a>
+                
+            </em>
+        </li>
+        
+
+        
+
+        <li>6 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+
+
+    <p>This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem. But, as you know life is dynamic! That&rsquo;s makes it interesting 😃</p>
+<h1 id="prelude">Prelude</h1>
+<p>It&rsquo;s been over a year since AlphaGo wins its match versus Lee Sedol with great victory. And not so long ago, AlphaGo Zero &ndash;self taught version of AlphaGo&ndash; has been <a href="https://deepmind.com/blog/alphago-zero-learning-scratch/">published</a>. One of the core component of AlphaGo is DQN &ndash;deep Q-network which had successfully completed a diverse of <a href="https://deepmind.com/research/dqn/">classic Atari games</a>.</p>
+<figure>
+    <img src="https://boygeniusreport.files.wordpress.com/2016/03/google-alphago-go-win.jpg"/> <figcaption>
+            <h4>Lee Sedol during the match</h4>
+        </figcaption>
+</figure>
+
+<p>Following the success of DQN, deep reinforcement learning (RL) at general has gained much popularity. The recent breakthroughs from OpenAI been released (like <a href="http://www.gamersgreed.com/openai-uses-gta-v-to-train-ai-for-driving/">this</a> and <a href="https://blog.openai.com/more-on-dota-2/">this</a>), has proved further capabilities of deep RL. In this post, I&rsquo;m going to tell my story about building a simple deep RL agent to play Atari Pong.</p>
+<h1 id="lets-start-with-some-theory">Lets Start with Some Theory</h1>
+<p>Before we dive into RL, I suggest you to understand about machine learning in general and a bit about Python and linear algebra. If you need resources about it, here are bunch of interesting resources to learn ML:</p>
+<ul>
+<li><a href="https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471">Machine Learning is Fun!</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLiaHhY2iBX9ihLasvE8BKnS2Xg8AhY6iV">Learning to See by Welch Lab</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLA89DCFA6ADACE599">Machine learning course videos by Andrew Ng</a>. You could also enroll in his course on Coursera</li>
+<li><a href="https://www.youtube.com/playlist?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU">Neural Networks Demystified by Welch Lab</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9">Neural net course videos by Geoffrey Hinton</a> (Coursera mirror)</li>
+</ul>
+<p>Reinforcement learning is an exciting area of machine learning. It can be classified somewhat between supervised and unsupervised learning. Because basically it is the learning method to make an efficient strategy in a given environment.</p>
+<p>There are few core component of reinforment learning: <strong>environment state</strong>, <strong>action</strong>, <strong>observation state</strong>, <strong>policy</strong>, and <strong>reward</strong>. Agent will make action for every timestep. Every action from the agent will affect the environment. And then environment will make feedback with reward and change of environment state. Depend on the problems, environment state will be observed by agent to make update to internal state of agent &ndash;called observation state. Set of action performed as a function of state is called policy. Policy can depend on observation state or not (can be deterministic, randomized or fixed).</p>
+<figure>
+    <img src="https://cdn-images-1.medium.com/max/1600/1*HvoLc50Dpq1ESKuejhICHg.png"/> <figcaption>
+            <h4>RL loopback</h4>
+        </figcaption>
+</figure>
+
+<p>Main goal of RL is to determine the best policy in order to maximize the <em>expected rewards</em>. We can imagine a policy as a path need to be taken to reach the goal. The longer the path taken, the least score can be obtained. If we for example, take the &ldquo;dangerous&rdquo; path which contains trap, we get the penalty and reducing the final score too. To achieve the best policy, sometimes we need to leave the most promising policy to explore another uncertain policy. This problem known as <a href="http://www.cs.cmu.edu/~rsalakhu/10703/Lecture_Exploration.pdf"><strong>exploration vs exploitation dilemma</strong></a>.</p>
+<p>Using value function, we could determine whether our policy is good enough or need to be improved. Basically, there are 2 main method for policy improvement, by using <strong>policy update</strong> and <strong>value update</strong>. Value based method perform update by choosing maximum value available for each state. Maximum value computed by taking all possible action and take the most promising ones. Value based method does not care about certain policy during learning phase. On the other hand, policy based certainly does care about policy. This method changing policy step by step until value obtained maximized. <strong>In short, value based is good for minimal state space, and policy based is good for minimal actions</strong>. For further explanation, I suggest you to read my references on the bottom of this page. My post here will focus only on my experiment about Atari Pong games.</p>
+<h1 id="get-to-the-observation">Get to the Observation</h1>
+<figure>
+    <img src="http://karpathy.github.io/assets/rl/pong.gif"/> <figcaption>
+            <h4>Pong table</h4>
+        </figcaption>
+</figure>
+
+<p>Now, we are going to decide which method will we use. There are some concerns about that. First of all, our pong table is an example of <strong>continous environment</strong>. Even though our monitor screen is finite, of course we cannot enumerate all possible states of pong table condition. Hence, we still prefer using simpler method using policy based approach called policy gradient.</p>
+<p>In plain English, policy gradient is a method to compute rate of reward change over a policy applied at current state. Probabilities for each action will increase based on cumulative reward reached. Higher reward gotten, higher chance the action will be performed. I am going to use <a href="https://gym.openai.com"><code>gym</code></a> package from OpenAI. They provide numerous environment samples for machine learning training and testing. And the best part of it is they are given in <strong>discrete inputs</strong>.</p>
+<p>Next, we need to design our DNN structure. For the input, we are given a <code>210x160x3</code> byte array represent a window frame. We would like to preprocessing this frame to make it easier for our NN doing learning. This can be done by crop the outside border and convert all pixel to binary color (black and white). There are 6 available action in the environment given, so thats our output layer should look like. We will use 1 hidden layer with 800 neuron and mapping those to 6 output layer.</p>
+<figure>
+    <img src="https://koneko096.github.io/staging/img/pg-nn.png"/> 
+</figure>
+
+<p>Then, we will connect our DNN to policy gradient to compose a deep RL network. We will define a cost function using average rewards of the last 100 episodes. Updating performed for each batch of 8 episodes. Each episode consist of multiple games of arbitrary number. Whenever one of the players score 21 first, episode will end. Total score computed from sum of score we got from each games. If we fail to return the ball, supply -1. Otherwise, we get 1.</p>
+<p>Weights updating will be performed by applying gradient descent with the batch score as multiplier. In other words, probability of a policy trajectory will be updated based on score. Greater the score obtained, probabilities will be increased. After thousands plays, the optimal trajectory will get the biggest score &ndash;thus, biggest probability.</p>
+<h1 id="remarks">Remarks</h1>
+<p>We should be ready to the training now! Now, install <code>numpy</code> and <code>gym</code>. And then, you can copy from my implementation <a href="https://gist.github.com/icalF/f108075b061dcbcc928cf9cace54d612">here</a> or <a href="https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5">Karpathy&rsquo;s</a> (with different neural anatomy). What you should do is just make some coffee and wait about a day. Your model should be ready to test then.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/dg9URIZXvuk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>After training has completed, you can run the script with turning on param <code>resume</code> and <code>render</code> to view the gameplay. You can notice that your agent has smart enough to beat the hardcoded AI. It also can perform and even return a smash. Pretty interesting. Maybe I will make the mobile version from this model. But for now, I think my FYP comes first 😺, perhaps</p>
+<h1 id="references">References</h1>
+<ul>
+<li>Reinforcement Learning: An Introduction by Sutton</li>
+<li><a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture14.pdf">CS213n Convolutional Neural Net for Visual Recognition course slide about RL</a></li>
+<li><a href="https://medium.com/@m.alzantot/deep-reinforcement-learning-demysitifed-episode-2-policy-iteration-value-iteration-and-q-978f9e89ddaa">Deep Reinforcement Learning Demysitifed (Episode 2) — Policy Iteration, Value Iteration and Q-learning</a></li>
+<li><a href="http://karpathy.github.io/2016/05/31/rl/">Pong with Reinforcement Learning Tutorial</a></li>
+<li><a href="https://medium.com/@awjuliani/super-simple-reinforcement-learning-tutorial-part-2-ded33892c724">Simple RL Series with Tensorflow</a></li>
+<li><a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/pg.pdf">Lecture slide from David Silver</a></li>
+<li><a href="https://github.com/dennybritz/reinforcement-learning/tree/master/PolicyGradient">Summary and additional resources about policy gradient method</a></li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://koneko096.github.io/staging/exploding/"><i class="fa fa-chevron-circle-left"></i> Exploding Image</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://koneko096.github.io/staging/asdf/">asdf -- Simple and Customizable One-for-all Version Manager <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Afrizal Fikri |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://koneko096.github.io/stagingindex.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://koneko096.github.io/staging/js/scripts.js"></script>
+
+</body>
+
+</html>
+

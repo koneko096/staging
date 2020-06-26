@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Postmortem</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="koneko096" /><meta property="og:title" content="Should We Write Tests?" />
+<meta property="og:description" content="One day, my friend wrote this in his timeline
+  I guess he&#39;s tired for writing tests   I know writing tests &ndash;both UT or integration tests&ndash; is boring and sometimes troublesome." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koneko096.github.io/staging/test/" />
+<meta property="article:published_time" content="2019-02-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-02-27T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Should We Write Tests?"/>
+<meta name="twitter:description" content="One day, my friend wrote this in his timeline
+  I guess he&#39;s tired for writing tests   I know writing tests &ndash;both UT or integration tests&ndash; is boring and sometimes troublesome."/>
+
+<meta name="generator" content="Hugo 0.66.0" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://koneko096.github.io/staging/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://koneko096.github.io/staging/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://koneko096.github.io/staging/">Postmortem</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://www.facebook.com/icalFikr" title="Facebook">
+               <i class="fab fa-facebook fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://github.com/koneko096" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://gitlab.com/icalF" title="GitLab">
+               <i class="fab fa-gitlab fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/koneko096" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://linkedin.com/in/afrizalf" title="LinkedIn">
+               <i class="fab fa-linkedin fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://koneko096.github.io/staging/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://koneko096.github.io/staging/faq/">
+                <i class="fa-li fa  fa-lg"></i><span>FAQ</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Should We Write Tests?</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-02-27T00:00:00Z">Feb 27, 2019</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://koneko096.github.io/staging/categories/software-development">software development</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://koneko096.github.io/staging/tags/tdd">#tdd</a>
+                
+                    , 
+                    <a href="https://koneko096.github.io/staging/tags/automation">#automation</a>
+                
+                    , 
+                    <a href="https://koneko096.github.io/staging/tags/bug">#bug</a>
+                
+                    , 
+                    <a href="https://koneko096.github.io/staging/tags/clean-code">#clean code</a>
+                
+            </em>
+        </li>
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+
+
+    <p>One day, my friend wrote this in his timeline</p>
+<figure>
+    <img src="https://koneko096.github.io/staging/img/test.jpg"/> <figcaption>
+            <h4>I guess he&#39;s tired for writing tests</h4>
+        </figcaption>
+</figure>
+
+<p>I know writing tests &ndash;both UT or integration tests&ndash; is boring and sometimes troublesome. But I will show you why you should write tests on most occasions (besides knowing your code is working, of course)</p>
+<p><strong>1. Eliminate regression</strong></p>
+<p>By writing tests, we make sure for everybody else working on this code to not break existing flow. In case any flow disturbed, bug can be prevented and also debugging become less costly.</p>
+<p><strong>2. Force us to <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">eating our own dog food</a></strong></p>
+<p>Writing test also means trying to use service made by ourself. This way, we can be sure our service is simple and clean enough for anybody willing to use.</p>
+<p><strong>3. Provide clear contract</strong></p>
+<p>Tests also can be used as a behavior contract. We could recognize what the expected output provide by a component by examine the running test.</p>
+<p>Those are just a few examples and still a lot more reasons why we should consider to write tests for every change we introduce. Not to mention to safeguard the deployment and so on.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://koneko096.github.io/staging/jungle-test/"><i class="fa fa-chevron-circle-left"></i> Testing Entire Jungle</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://koneko096.github.io/staging/cuda-10/">Installing CUDA 10.2 in Ubuntu 20.04 <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Afrizal Fikri |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://koneko096.github.io/stagingindex.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://koneko096.github.io/staging/js/scripts.js"></script>
+
+</body>
+
+</html>
+

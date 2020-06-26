@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Postmortem</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="koneko096" /><meta property="og:title" content="Work Safely with C&#43;&#43; Vector" />
+<meta property="og:description" content="One of the notable feature of C&#43;&#43; (also C# and Obj-C) is operator overloading. In C&#43;&#43; vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koneko096.github.io/staging/safe-vector/" />
+<meta property="article:published_time" content="2018-12-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-12-16T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Work Safely with C&#43;&#43; Vector"/>
+<meta name="twitter:description" content="One of the notable feature of C&#43;&#43; (also C# and Obj-C) is operator overloading. In C&#43;&#43; vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array."/>
+
+<meta name="generator" content="Hugo 0.66.0" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://koneko096.github.io/staging/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://koneko096.github.io/staging/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://koneko096.github.io/staging/">Postmortem</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://www.facebook.com/icalFikr" title="Facebook">
+               <i class="fab fa-facebook fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://github.com/koneko096" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://gitlab.com/icalF" title="GitLab">
+               <i class="fab fa-gitlab fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/koneko096" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://linkedin.com/in/afrizalf" title="LinkedIn">
+               <i class="fab fa-linkedin fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://koneko096.github.io/staging/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://koneko096.github.io/staging/faq/">
+                <i class="fa-li fa  fa-lg"></i><span>FAQ</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Work Safely with C&#43;&#43; Vector</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2018-12-16T00:00:00Z">Dec 16, 2018</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://koneko096.github.io/staging/categories/testing">testing</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://koneko096.github.io/staging/tags/debug">#debug</a>
+                
+                    , 
+                    <a href="https://koneko096.github.io/staging/tags/error-handling">#error handling</a>
+                
+            </em>
+        </li>
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+
+
+    <p>One of the notable feature of C++ (also C# and Obj-C) is operator overloading. In C++ vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array. But there are problems with it. As the original behavior of array, accessing index out of allocated size will cause undefined behavior. Vector just doing so by preserving this behavior to the operator.</p>
+<figure>
+    <img src="https://i.redd.it/wzr2x3zklg211.png"/> 
+</figure>
+
+<p>This design is leveraging explicit checking everytime before element access performed. This done pretty well to prevent <a href="http://wiki.c2.com/?LeakyAbstraction">leaky abstraction</a>. But debugging will be hard because of generic error. In my case, I had to deal with CUDA kernel allocation too, so this kind of error message could not help at all.</p>
+<p>Fortunately, std vector come with different method to get out of bound error. Instead of bracket operator, we can rely on <em>at</em> method. This way error handling become much easier. Here&rsquo;s an example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdexcept&gt;    // out_of_range</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">try</span> {
+        v.at(<span style="color:#ae81ff">15</span>);
+    }
+    <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> out_of_range<span style="color:#f92672">&amp;</span> e) {
+        cerr <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Error while access vector: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> e.what() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://koneko096.github.io/staging/asdf/"><i class="fa fa-chevron-circle-left"></i> asdf -- Simple and Customizable One-for-all Version Manager</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://koneko096.github.io/staging/jungle-test/">Testing Entire Jungle <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Afrizal Fikri |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://koneko096.github.io/stagingindex.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://koneko096.github.io/staging/js/scripts.js"></script>
+
+</body>
+
+</html>
+
