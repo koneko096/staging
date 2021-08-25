@@ -3,8 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://koneko096.github.io/staging/tags/architecture/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://koneko096.github.io/staging/categories/</loc>
-    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koneko096.github.io/staging/tags/clean-code/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koneko096.github.io/staging/tags/coupling/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koneko096.github.io/staging/wet-code/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koneko096.github.io/staging/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koneko096.github.io/staging/categories/software-development/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koneko096.github.io/staging/tags/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -48,16 +83,6 @@
   </url>
   
   <url>
-    <loc>https://koneko096.github.io/staging/</loc>
-    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://koneko096.github.io/staging/tags/</loc>
-    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://koneko096.github.io/staging/tags/automation/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
   </url>
@@ -68,17 +93,7 @@
   </url>
   
   <url>
-    <loc>https://koneko096.github.io/staging/tags/clean-code/</loc>
-    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://koneko096.github.io/staging/test/</loc>
-    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://koneko096.github.io/staging/categories/software-development/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
   </url>
   
