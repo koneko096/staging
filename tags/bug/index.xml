@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy; 2021 - Afrizal Fikri</copyright>
-    <lastBuildDate>Wed, 27 Feb 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://koneko096.github.io/staging/tags/bug/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 27 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/tags/bug/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Should We Write Tests?</title>
       <link>https://koneko096.github.io/staging/test/</link>

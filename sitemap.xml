@@ -1,263 +1,161 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://koneko096.github.io/staging/tags/architecture/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/clean-code/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/coupling/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/wet-code/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/software-development/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/config/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/cuda/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/experiment/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/gcc/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/gpu/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/hpc/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/cuda-10/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/parallel-computing/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/automation/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/bug/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/test/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/tdd/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/clean-architecture/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/oop/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/software-architecture/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/testing/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/testing/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/jungle-test/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/debug/</loc>
     <lastmod>2018-12-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/error-handling/</loc>
     <lastmod>2018-12-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/safe-vector/</loc>
     <lastmod>2018-12-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/asdf/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/devops/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/programming/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/version-manager/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/artificial-intelligence/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/deep-learning/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/atari-pong/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/machine-learning/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/reinforcement-learning/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/bug/</loc>
     <lastmod>2017-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/development/</loc>
     <lastmod>2017-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/development/</loc>
     <lastmod>2017-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/exploding/</loc>
     <lastmod>2017-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/security/</loc>
     <lastmod>2017-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/security/</loc>
     <lastmod>2017-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/blog/</loc>
     <lastmod>2017-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/blog/</loc>
     <lastmod>2017-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/github/</loc>
     <lastmod>2017-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/github-page/</loc>
     <lastmod>2017-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/hello-world/</loc>
     <lastmod>2017-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/tags/medium/</loc>
     <lastmod>2017-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koneko096.github.io/staging/faq/</loc>
+  </url><url>
+    <loc>https://koneko096.github.io/staging/tags/index/</loc>
   </url>
-  
 </urlset>

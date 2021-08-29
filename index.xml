@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Postmortem</title>
+    <title>Posts on Postmortem</title>
     <link>https://koneko096.github.io/staging/</link>
-    <description>Recent content on Postmortem</description>
+    <description>Recent content in Posts on Postmortem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy; 2021 - Afrizal Fikri</copyright>
-    <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://koneko096.github.io/staging/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Make Wet Code Great Again</title>
       <link>https://koneko096.github.io/staging/wet-code/</link>
