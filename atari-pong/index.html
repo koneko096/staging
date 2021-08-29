@@ -1,139 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
 
 <html lang="en-us">
-
-<head>
-  <title>Postmortem</title>
+  <head>
   <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="The HTML5 Herald" />
-<meta name="author" content="koneko096" /><meta property="og:title" content="Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient - Postmortem</title>
+
+  
+  
+  <meta name="description" content="This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem." />
+  <meta name="author" content="koneko096" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://koneko096.github.io/staging/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/theme.png" />
+
+  
+
+  
+  <link rel="icon" href="https://koneko096.github.io/staging/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://koneko096.github.io/staging/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.66.0" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient" />
 <meta property="og:description" content="This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koneko096.github.io/staging/atari-pong/" />
 <meta property="article:published_time" content="2018-01-12T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-01-12T00:00:00+00:00" />
 
-<meta name="twitter:card" content="summary"/>
+  
+  <meta itemprop="name" content="Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient">
+<meta itemprop="description" content="This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem.">
+<meta itemprop="datePublished" content="2018-01-12T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-01-12T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1145">
+
+
+
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient"/>
 <meta name="twitter:description" content="This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem."/>
 
-<meta name="generator" content="Hugo 0.66.0" />
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://koneko096.github.io/staging">Postmortem</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
     
+    <a class="" href="https://koneko096.github.io/staging/categories">Categories</a>
+    
+    <a class="" href="https://koneko096.github.io/staging/faq/">FAQ</a>
+    
+  </nav>
+  
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://koneko096.github.io/staging/fontawesome/css/all.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
-  <link rel="stylesheet" type="text/css" href="https://koneko096.github.io/staging/css/styles.css" /></head>
+  
+</header>
 
-<body>
-  <div id="container">
-    <header>
-      <h1>
-                <a href="https://koneko096.github.io/staging/">Postmortem</a>
-            </h1>
 
-      <ul id="social-media">
-             <li>
-               <a href="https://www.facebook.com/icalFikr" title="Facebook">
-               <i class="fab fa-facebook fa-lg"></i>
-               </a>
-             </li>
-             <li>
-               <a href="https://github.com/koneko096" title="GitHub">
-               <i class="fab fa-github fa-lg"></i>
-               </a>
-             </li>
-             <li>
-               <a href="https://gitlab.com/icalF" title="GitLab">
-               <i class="fab fa-gitlab fa-lg"></i>
-               </a>
-             </li>
-             <li>
-               <a href="https://twitter.com/koneko096" title="Twitter">
-               <i class="fab fa-twitter fa-lg"></i>
-               </a>
-             </li>
-             <li>
-               <a href="https://linkedin.com/in/afrizalf" title="LinkedIn">
-               <i class="fab fa-linkedin fa-lg"></i>
-               </a>
-             </li>
-      </ul>
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>January 12, 2018</time>
       
-    </header>
-
-    
-<nav>
-    <ul>
-        
-        <li>
-            <a class="" href="https://koneko096.github.io/staging/categories">
-                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="" href="https://koneko096.github.io/staging/faq/">
-                <i class="fa-li fa  fa-lg"></i><span>FAQ</span>
-            </a>
-        </li>
-        
-    </ul>
-</nav>
-
-
-    <main>
-
-
-
-
-<article>
-
+      <span>koneko096</span>
+      
+    </aside>
     <h1>Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient</h1>
-
-    
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2018-01-12T00:00:00Z">Jan 12, 2018</time>
-        </li>
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="https://koneko096.github.io/staging/categories/artificial-intelligence">artificial intelligence</a>
-                
-                    , 
-                    <a href="https://koneko096.github.io/staging/categories/machine-learning">machine learning</a>
-                
-                    , 
-                    <a href="https://koneko096.github.io/staging/categories/experiment">experiment</a>
-                
-                    , 
-                    <a href="https://koneko096.github.io/staging/categories/deep-learning">deep learning</a>
-                
-                    , 
-                    <a href="https://koneko096.github.io/staging/categories/reinforcement-learning">reinforcement learning</a>
-                
-            </em>
-        </li>
-        
-
-        
-
-        <li>6 minutes read</li>
-    </ul>
-</aside>
-
-    
-
-    
-
-
-    <p>This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem. But, as you know life is dynamic! That&rsquo;s makes it interesting 😃</p>
+  </header>
+  <section class="post-content"><p>This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem. But, as you know life is dynamic! That&rsquo;s makes it interesting 😃</p>
 <h1 id="prelude">Prelude</h1>
 <p>It&rsquo;s been over a year since AlphaGo wins its match versus Lee Sedol with great victory. And not so long ago, AlphaGo Zero &ndash;self taught version of AlphaGo&ndash; has been <a href="https://deepmind.com/blog/alphago-zero-learning-scratch/">published</a>. One of the core component of AlphaGo is DQN &ndash;deep Q-network which had successfully completed a diverse of <a href="https://deepmind.com/research/dqn/">classic Atari games</a>.</p>
 <figure>
@@ -196,44 +207,28 @@
 <li><a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/pg.pdf">Lecture slide from David Silver</a></li>
 <li><a href="https://github.com/dennybritz/reinforcement-learning/tree/master/PolicyGradient">Summary and additional resources about policy gradient method</a></li>
 </ul>
+</section>
 
+  
+  
 
+  
+  
+  
+
+  
+  
 </article>
 
-
-<section class="post-nav">
-    <ul>
-        
-        <li>
-            <a href="https://koneko096.github.io/staging/exploding/"><i class="fa fa-chevron-circle-left"></i> Exploding Image</a>
-        </li>
-        
-        
-        <li>
-            <a href="https://koneko096.github.io/staging/asdf/">asdf -- Simple and Customizable One-for-all Version Manager <i class="fa fa-chevron-circle-right"></i> </a>
-        </li>
-        
-    </ul>
-</section>
-  
-    
-    
-  
-
-
-
-
-
 </main>
-    <footer>
-        <h6>Copyright © 2021 - Afrizal Fikri |
-            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
-            <a href="https://koneko096.github.io/stagingindex.xml">Subscribe </a></h6>
-    </footer>
-</div>
-<script src="https://koneko096.github.io/staging/js/scripts.js"></script>
 
-</body>
+    <footer class="footer">
+  <p>&copy; 2021 <a href="https://koneko096.github.io/staging">Postmortem</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
 
+  </body>
 </html>
-
