@@ -126,8 +126,6 @@
   
   <nav class="menu">
     
-    <a class="" href="https://koneko096.github.io/staging/categories">Categories</a>
-    
     <a class="" href="https://koneko096.github.io/staging/posts/faq/">FAQ</a>
     
   </nav>
@@ -169,7 +167,7 @@
 <h1 id="prelude">Prelude</h1>
 <p>It&rsquo;s been over a year since AlphaGo wins its match versus Lee Sedol with great victory. And not so long ago, AlphaGo Zero &ndash;self taught version of AlphaGo&ndash; has been <a href="https://deepmind.com/blog/alphago-zero-learning-scratch/">published</a>. One of the core component of AlphaGo is DQN &ndash;deep Q-network which had successfully completed a diverse of <a href="https://deepmind.com/research/dqn/">classic Atari games</a>.</p>
 <figure>
-    <img src="https://boygeniusreport.files.wordpress.com/2016/03/google-alphago-go-win.jpg"/> <figcaption>
+    <img src="https://web.archive.org/web/20200618130300if_/https://boygeniusreport.files.wordpress.com/2016/03/google-alphago-go-win.jpg?quality=70&amp;strip=all&amp;w=782"/> <figcaption>
             <h4>Lee Sedol during the match</h4>
         </figcaption>
 </figure>
@@ -211,7 +209,7 @@
 <p>Then, we will connect our DNN to policy gradient to compose a deep RL network. We will define a cost function using average rewards of the last 100 episodes. Updating performed for each batch of 8 episodes. Each episode consist of multiple games of arbitrary number. Whenever one of the players score 21 first, episode will end. Total score computed from sum of score we got from each games. If we fail to return the ball, supply -1. Otherwise, we get 1.</p>
 <p>Weights updating will be performed by applying gradient descent with the batch score as multiplier. In other words, probability of a policy trajectory will be updated based on score. Greater the score obtained, probabilities will be increased. After thousands plays, the optimal trajectory will get the biggest score &ndash;thus, biggest probability.</p>
 <h1 id="remarks">Remarks</h1>
-<p>We should be ready to the training now! Now, install <code>numpy</code> and <code>gym</code>. And then, you can copy from my implementation <a href="https://gist.github.com/icalF/f108075b061dcbcc928cf9cace54d612">here</a> or <a href="https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5">Karpathy&rsquo;s</a> (with different neural anatomy). What you should do is just make some coffee and wait about a day. Your model should be ready to test then.</p>
+<p>We should be ready to the training now! Now, install <code>numpy</code> and <code>gym</code>. And then, you can copy from my implementation <a href="https://gist.github.com/koneko096/f108075b061dcbcc928cf9cace54d612">here</a> or <a href="https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5">Karpathy&rsquo;s</a> (with different neural anatomy). What you should do is just make some coffee and wait about a day. Your model should be ready to test then.</p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/dg9URIZXvuk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
