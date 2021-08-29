@@ -10,10 +10,10 @@
     <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/tags/gcc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Installing CUDA 10.2 in Ubuntu 20.04</title>
-      <link>https://koneko096.github.io/staging/cuda-10/</link>
+      <link>https://koneko096.github.io/staging/posts/cuda-10/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/cuda-10/</guid>
+      <guid>https://koneko096.github.io/staging/posts/cuda-10/</guid>
       <description>Around last week I just bought a GPU for my PC. Actually, I intended to use it for speed up Persona 5 run on RPCS3. But it turned out the</description>
     </item>
     

@@ -10,10 +10,10 @@
     <lastBuildDate>Thu, 10 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/categories/software-architecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing Entire Jungle</title>
-      <link>https://koneko096.github.io/staging/jungle-test/</link>
+      <link>https://koneko096.github.io/staging/posts/jungle-test/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/jungle-test/</guid>
+      <guid>https://koneko096.github.io/staging/posts/jungle-test/</guid>
       <description>You wanted a banana but what you got was a gorilla holding the banana and the entire jungle
  In order to create a modular classes, a lot people compose several layers of abstractions.</description>
     </item>

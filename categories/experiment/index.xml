@@ -10,19 +10,19 @@
     <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/categories/experiment/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Installing CUDA 10.2 in Ubuntu 20.04</title>
-      <link>https://koneko096.github.io/staging/cuda-10/</link>
+      <link>https://koneko096.github.io/staging/posts/cuda-10/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/cuda-10/</guid>
+      <guid>https://koneko096.github.io/staging/posts/cuda-10/</guid>
       <description>Around last week I just bought a GPU for my PC. Actually, I intended to use it for speed up Persona 5 run on RPCS3. But it turned out the</description>
     </item>
     
     <item>
       <title>Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient</title>
-      <link>https://koneko096.github.io/staging/atari-pong/</link>
+      <link>https://koneko096.github.io/staging/posts/atari-pong/</link>
       <pubDate>Fri, 12 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/atari-pong/</guid>
+      <guid>https://koneko096.github.io/staging/posts/atari-pong/</guid>
       <description>This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &amp;ndash;that&amp;rsquo;s why the name is postmortem.</description>
     </item>
     

@@ -10,10 +10,10 @@
     <lastBuildDate>Tue, 17 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/categories/bug/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exploding Image</title>
-      <link>https://koneko096.github.io/staging/exploding/</link>
+      <link>https://koneko096.github.io/staging/posts/exploding/</link>
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/exploding/</guid>
+      <guid>https://koneko096.github.io/staging/posts/exploding/</guid>
       <description>On my last summer intern, I was assigned to a bug fixing job. It seems not a big deal at first. Only fixing timeout while uploading image. But, when I try to add timeout to 1 min, still got a timeout.</description>
     </item>
     

@@ -10,19 +10,19 @@
     <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/tags/clean-code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Make Wet Code Great Again</title>
-      <link>https://koneko096.github.io/staging/wet-code/</link>
+      <link>https://koneko096.github.io/staging/posts/wet-code/</link>
       <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/wet-code/</guid>
+      <guid>https://koneko096.github.io/staging/posts/wet-code/</guid>
       <description>Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module.</description>
     </item>
     
     <item>
       <title>Should We Write Tests?</title>
-      <link>https://koneko096.github.io/staging/test/</link>
+      <link>https://koneko096.github.io/staging/posts/test/</link>
       <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/test/</guid>
+      <guid>https://koneko096.github.io/staging/posts/test/</guid>
       <description>One day, my friend wrote this in his timeline
   I guess he&amp;#39;s tired for writing tests   I know writing tests &amp;ndash;both UT or integration tests&amp;ndash; is boring and sometimes troublesome.</description>
     </item>

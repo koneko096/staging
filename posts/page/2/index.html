@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>Posts - Postmortem</title>
+
+  
+  
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/app.min.css" />
+
+  
+
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/twitter.svg" />
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://koneko096.github.io/staging/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://koneko096.github.io/staging/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.81.0" />
+
+  
+  
+  <link
+    rel="alternate"
+    type="application/rss&#43;xml"
+    href="https://koneko096.github.io/staging/posts/index.xml"
+    title="Postmortem"
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://koneko096.github.io/staging/posts/" />
+
+
+  
+  <meta itemprop="name" content="Posts">
+<meta itemprop="description" content="">
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content=""/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://koneko096.github.io/staging">Postmortem</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="https://koneko096.github.io/staging/categories">Categories</a>
+    
+    <a class="" href="https://koneko096.github.io/staging/posts/faq/">FAQ</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="twitter"
+      style="--url: url(./twitter.svg)"
+      href="https://twitter.com/koneko096"
+      target="_blank"
+    ></a>
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/koneko096"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+
+
+<h1 class="main-title">Posts</h1>
+
+
+
+
+
+
+
+ 
+<article class="post-entry">
+  <h2>Work Safely with C&#43;&#43; Vector</h2>
+  <time>December 16, 2018</time>
+  <a href="https://koneko096.github.io/staging/posts/safe-vector/"></a>
+</article>
+
+<article class="post-entry">
+  <h2>asdf -- Simple and Customizable One-for-all Version Manager</h2>
+  <time>March 23, 2018</time>
+  <a href="https://koneko096.github.io/staging/posts/asdf/"></a>
+</article>
+
+<article class="post-entry">
+  <h2>Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient</h2>
+  <time>January 12, 2018</time>
+  <a href="https://koneko096.github.io/staging/posts/atari-pong/"></a>
+</article>
+
+<article class="post-entry">
+  <h2>Exploding Image</h2>
+  <time>October 17, 2017</time>
+  <a href="https://koneko096.github.io/staging/posts/exploding/"></a>
+</article>
+
+
+
+
+<nav class="main-nav">
+  
+  <a class="prev" href="https://koneko096.github.io/staging/posts/">← Prev Page</a>
+  
+  
+  <a class="next" href="https://koneko096.github.io/staging/posts/page/3/">Next Page →</a>
+  
+</nav>
+
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2021 <a href="https://koneko096.github.io/staging">Postmortem</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

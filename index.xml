@@ -1,93 +1,93 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Postmortem</title>
+    <title>Postmortem</title>
     <link>https://koneko096.github.io/staging/</link>
-    <description>Recent content in Posts on Postmortem</description>
+    <description>Recent content on Postmortem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy; 2021 - Afrizal Fikri</copyright>
     <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Make Wet Code Great Again</title>
-      <link>https://koneko096.github.io/staging/wet-code/</link>
+      <link>https://koneko096.github.io/staging/posts/wet-code/</link>
       <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/wet-code/</guid>
+      <guid>https://koneko096.github.io/staging/posts/wet-code/</guid>
       <description>Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module.</description>
     </item>
     
     <item>
       <title>Installing CUDA 10.2 in Ubuntu 20.04</title>
-      <link>https://koneko096.github.io/staging/cuda-10/</link>
+      <link>https://koneko096.github.io/staging/posts/cuda-10/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/cuda-10/</guid>
+      <guid>https://koneko096.github.io/staging/posts/cuda-10/</guid>
       <description>Around last week I just bought a GPU for my PC. Actually, I intended to use it for speed up Persona 5 run on RPCS3. But it turned out the</description>
     </item>
     
     <item>
       <title>Should We Write Tests?</title>
-      <link>https://koneko096.github.io/staging/test/</link>
+      <link>https://koneko096.github.io/staging/posts/test/</link>
       <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/test/</guid>
+      <guid>https://koneko096.github.io/staging/posts/test/</guid>
       <description>One day, my friend wrote this in his timeline
   I guess he&amp;#39;s tired for writing tests   I know writing tests &amp;ndash;both UT or integration tests&amp;ndash; is boring and sometimes troublesome.</description>
     </item>
     
     <item>
       <title>Testing Entire Jungle</title>
-      <link>https://koneko096.github.io/staging/jungle-test/</link>
+      <link>https://koneko096.github.io/staging/posts/jungle-test/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/jungle-test/</guid>
+      <guid>https://koneko096.github.io/staging/posts/jungle-test/</guid>
       <description>You wanted a banana but what you got was a gorilla holding the banana and the entire jungle
  In order to create a modular classes, a lot people compose several layers of abstractions.</description>
     </item>
     
     <item>
       <title>Work Safely with C&#43;&#43; Vector</title>
-      <link>https://koneko096.github.io/staging/safe-vector/</link>
+      <link>https://koneko096.github.io/staging/posts/safe-vector/</link>
       <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/safe-vector/</guid>
+      <guid>https://koneko096.github.io/staging/posts/safe-vector/</guid>
       <description>One of the notable feature of C++ (also C# and Obj-C) is operator overloading. In C++ vector, element can be accessed use &amp;ldquo;[]&amp;rdquo; bracket operator. Sounds good just like we accessing ordinary array.</description>
     </item>
     
     <item>
       <title>asdf -- Simple and Customizable One-for-all Version Manager</title>
-      <link>https://koneko096.github.io/staging/asdf/</link>
+      <link>https://koneko096.github.io/staging/posts/asdf/</link>
       <pubDate>Fri, 23 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/asdf/</guid>
+      <guid>https://koneko096.github.io/staging/posts/asdf/</guid>
       <description>Lately, I&amp;rsquo;ve been experimenting with Elixir to create simple functional microservices. Beside the language itself, the one thing need to explore are environment tools, like version and package manager. In Elixir, at least there are 2 env managers; kiex and exenv.</description>
     </item>
     
     <item>
       <title>Deep Reinforcement Learning Note 1 - Playing Pong with Policy Gradient</title>
-      <link>https://koneko096.github.io/staging/atari-pong/</link>
+      <link>https://koneko096.github.io/staging/posts/atari-pong/</link>
       <pubDate>Fri, 12 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/atari-pong/</guid>
+      <guid>https://koneko096.github.io/staging/posts/atari-pong/</guid>
       <description>This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &amp;ndash;that&amp;rsquo;s why the name is postmortem.</description>
     </item>
     
     <item>
       <title>Exploding Image</title>
-      <link>https://koneko096.github.io/staging/exploding/</link>
+      <link>https://koneko096.github.io/staging/posts/exploding/</link>
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/exploding/</guid>
+      <guid>https://koneko096.github.io/staging/posts/exploding/</guid>
       <description>On my last summer intern, I was assigned to a bug fixing job. It seems not a big deal at first. Only fixing timeout while uploading image. But, when I try to add timeout to 1 min, still got a timeout.</description>
     </item>
     
     <item>
       <title>Hello World!</title>
-      <link>https://koneko096.github.io/staging/hello-world/</link>
+      <link>https://koneko096.github.io/staging/posts/hello-world/</link>
       <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/hello-world/</guid>
+      <guid>https://koneko096.github.io/staging/posts/hello-world/</guid>
       <description>Hi again! It&amp;rsquo;s been a while (again) since I wrote some of my thoughts online. Honestly, I don&amp;rsquo;t want to move my posts from blogger. But, since my blogger layout apparently outdated (because of the old layout from the high school), I think I need to archive that old posts.</description>
     </item>
     
@@ -103,10 +103,10 @@
     
     <item>
       <title>FAQ</title>
-      <link>https://koneko096.github.io/staging/faq/</link>
+      <link>https://koneko096.github.io/staging/posts/faq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://koneko096.github.io/staging/faq/</guid>
+      <guid>https://koneko096.github.io/staging/posts/faq/</guid>
       <description>What is the answer of life, universe, and everythings?
 42
   Can we travel to the past?
