@@ -190,7 +190,7 @@
         </figcaption>
 </figure>
 
-<p>Main goal of RL is to determine the best policy in order to maximize the <em>expected rewards</em>. We can imagine a policy as a path need to be taken to reach the goal. The longer the path taken, the least score can be obtained. If we for example, take the &ldquo;dangerous&rdquo; path which contains trap, we get the penalty and reducing the final score too. To achieve the best policy, sometimes we need to leave the most promising policy to explore another uncertain policy. This problem known as <a href="http://www.cs.cmu.edu/~rsalakhu/10703/Lecture_Exploration.pdf"><strong>exploration vs exploitation dilemma</strong></a>.</p>
+<p>Main goal of RL is to determine the best policy in order to maximize the <em>expected rewards</em>. We can imagine a policy as a path need to be taken to reach the goal. The longer the path taken, the least score can be obtained. If we for example, take the &ldquo;dangerous&rdquo; path which contains trap, we get the penalty and reducing the final score too. To achieve the best policy, sometimes we need to leave the most promising policy to explore another uncertain policy. This problem known as <a href="https://towardsdatascience.com/intuition-exploration-vs-exploitation-c645a1d37c7a"><strong>exploration vs exploitation dilemma</strong></a>.</p>
 <p>Using value function, we could determine whether our policy is good enough or need to be improved. Basically, there are 2 main method for policy improvement, by using <strong>policy update</strong> and <strong>value update</strong>. Value based method perform update by choosing maximum value available for each state. Maximum value computed by taking all possible action and take the most promising ones. Value based method does not care about certain policy during learning phase. On the other hand, policy based certainly does care about policy. This method changing policy step by step until value obtained maximized. <strong>In short, value based is good for minimal state space, and policy based is good for minimal actions</strong>. For further explanation, I suggest you to read my references on the bottom of this page. My post here will focus only on my experiment about Atari Pong games.</p>
 <h1 id="get-to-the-observation">Get to the Observation</h1>
 <figure>
@@ -250,7 +250,7 @@
 </main>
 
     <footer class="footer">
-  <p>&copy; 2021 <a href="https://koneko096.github.io/staging">Postmortem</a></p>
+  <p>&copy; 2022 <a href="https://koneko096.github.io/staging">Postmortem</a></p>
   <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
   <p>
     <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
