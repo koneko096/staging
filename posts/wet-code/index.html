@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 
 
 
@@ -12,19 +12,55 @@
 
 
 
-<html lang="en-us">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+>
   <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
 
   
   <title>Make Wet Code Great Again - Postmortem</title>
 
   
+  <meta name="theme-color" />
+
+  
+  
+  
   
   <meta name="description" content="Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module." />
-  <meta name="author" content="" />
+  <meta name="author" content="Afrizal Fikri" />
   
 
   
@@ -33,10 +69,33 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/app.min.css" />
+  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/main.min.css" />
 
   
-  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/an-old-hope.min.css" />
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/9217338" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/github.svg" />
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/linkedin.svg" />
+  
+  
+
+  
+  
   <script
     defer
     src="https://koneko096.github.io/staging/highlight.min.js"
@@ -45,10 +104,7 @@
   
 
   
-  <link rel="preload" as="image" href="https://koneko096.github.io/staging/theme.png" />
-
   
-  <link rel="preload" as="image" href="https://koneko096.github.io/staging/github.svg" />
   
 
   
@@ -56,103 +112,174 @@
   <link rel="apple-touch-icon" href="https://koneko096.github.io/staging/apple-touch-icon.png" />
 
   
-  <meta name="generator" content="Hugo 0.81.0" />
+  <meta name="generator" content="Hugo 0.121.2">
 
   
   
-
   
   
   
-  
-  
-  
+  <meta itemprop="name" content="Make Wet Code Great Again">
+<meta itemprop="description" content="Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module."><meta itemprop="datePublished" content="2021-08-25T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-08-25T00:00:00+00:00" />
+<meta itemprop="wordCount" content="231">
+<meta itemprop="keywords" content="architecture,coupling,clean code," />
   
   <meta property="og:title" content="Make Wet Code Great Again" />
 <meta property="og:description" content="Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koneko096.github.io/staging/posts/wet-code/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-08-25T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-08-25T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2021-08-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-25T00:00:00+00:00" />
 
 
   
-  <meta itemprop="name" content="Make Wet Code Great Again">
-<meta itemprop="description" content="Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module."><meta itemprop="datePublished" content="2021-08-25T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2021-08-25T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="231">
-<meta itemprop="keywords" content="architecture,coupling,clean code," />
-  
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Make Wet Code Great Again"/>
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Make Wet Code Great Again"/>
 <meta name="twitter:description" content="Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module."/>
 
   
   
+  
+  <link rel="canonical" href="https://koneko096.github.io/staging/posts/wet-code/" />
+  
+  
 </head>
 
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="https://koneko096.github.io/staging"
+      >Postmortem</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
 
-  <body class="not-ready" data-menu="true">
-    <header class="header">
-  
-  <p class="logo">
-    <a class="site-name" href="https://koneko096.github.io/staging">Postmortem</a><a class="btn-dark"></a>
-  </p>
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
   
 
   <script>
-    let bodyClx = document.body.classList;
-    let btnDark = document.querySelector('.btn-dark');
-    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
-    let darkVal = localStorage.getItem('dark');
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
 
-    let setDark = (isDark) => {
-      bodyClx[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
     };
 
-    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
-    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
 
-    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
-    sysDark.addEventListener('change', (event) => setDark(event.matches));
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
   </script>
 
-  
-  
-  <nav class="menu">
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
     
-    <a class="" href="https://koneko096.github.io/staging/posts/faq/">FAQ</a>
     
-  </nav>
-  
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="https://koneko096.github.io/staging/posts/faq/"
+        >FAQ</a
+      >
+      
+    </nav>
+    
 
-  
-  <nav class="social">
     
-    <a
-      class="github"
-      style="--url: url(./github.svg)"
-      href="https://github.com/koneko096"
-      target="_blank"
-    ></a>
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/koneko096"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/afrizalf"
+        target="_blank"
+        rel="me"
+      >
+        linkedin
+      </a>
+      
+    </nav>
     
-  </nav>
-  
+  </div>
 </header>
 
 
-    <main class="main">
-
-<article class="post-single">
-  <header class="post-title">
-    <aside>
-      <time>August 25, 2021</time>
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
       
-    </aside>
-    <h1>Make Wet Code Great Again</h1>
+
+<article>
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">Make Wet Code Great Again</h1>
+
+    
+    <div class="text-sm antialiased opacity-60">
+      
+      <time>Aug 25, 2021</time>
+      
+      
+      
+      
+    </div>
+    
   </header>
-  <section class="post-content"><p>Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module. Sometimes, into another generic &ldquo;util&rdquo; class which used across multiple modules. It is also the one of most popular point introduced in infamous Clean Code book.</p>
+
+  <section><p>Almost every developer I have talked to, agree if redundancy is a smell of bad code. Most of them, then will suggest to put similiar code into one function, or class, or module. Sometimes, into another generic &ldquo;util&rdquo; class which used across multiple modules. It is also the one of most popular point introduced in infamous Clean Code book.</p>
 <p>To be honest, this <a href="https://www.oreilly.com/library/view/97-things-every/9780596809515/ch30.html">DRY principle</a> mostly come very handy to smell any sign of improper coupling. It is also nice way to encapsulate knowledge into one place and prevent doing modification in many places. But, I must emphasis that is must be done with caution.</p>
 <p>Smell is not meant to be pursued. Smell is a sign. It is a good chance your code was gotten bad if duplication occurs a lot, but not everything must be abstracted away into one line function, for example. Take a step back and revisit your module dependencies is a better option. <a href="https://dev.to/nettab/we-should-all-be-writing-wet-code-3d95">Bad abstraction</a> will throw your chance to encapsulate your module properly. The entire code can turn into giant mudball, with every pieces connected to another.</p>
 <p>On distributed thing, it become even worse. It may be good if executed properly to leverage platformization over entire organization. But, it may become horrendous singularity no one can ever hope to modify without impacting any other part of system, leading to slower development, and more failures. Happy WET-ting!!</p>
@@ -165,13 +292,25 @@
 
   
   
-  <footer class="post-tags">
+  <footer class="mt-12 flex flex-wrap">
      
-    <a href="https://koneko096.github.io/staging/tags/architecture">architecture</a>
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/architecture"
+      >architecture</a
+    >
      
-    <a href="https://koneko096.github.io/staging/tags/coupling">coupling</a>
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/coupling"
+      >coupling</a
+    >
      
-    <a href="https://koneko096.github.io/staging/tags/clean-code">clean code</a>
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/clean-code"
+      >clean code</a
+    >
     
   </footer>
   
@@ -179,27 +318,57 @@
   
   
   
-  <nav class="post-nav">
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
     
-    <a class="prev" href="https://koneko096.github.io/staging/posts/kickstart-2022/"><span>←</span><span>Kick Start 2022 Round B: Hamiltonian Tour Solution</span></a>
-     
-    <a class="next" href="https://koneko096.github.io/staging/posts/cuda-10/"><span>Installing CUDA 10.2 in Ubuntu 20.04</span><span>→</span></a>
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://koneko096.github.io/staging/posts/kickstart-2022/"
+      ><span class="mr-1.5">←</span><span>Kick Start 2022 Round B: Hamiltonian Tour Solution</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://koneko096.github.io/staging/posts/cuda-10/"
+      ><span>Installing CUDA 10.2 in Ubuntu 20.04</span><span class="ml-1.5">→</span></a
+    >
     
   </nav>
   
+  
 
   
+  
+
+  
+  
+
+  
+
   
 </article>
 
-</main>
 
-    <footer class="footer">
-  <p>&copy; 2024 <a href="https://koneko096.github.io/staging">Postmortem</a></p>
-  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
-  <p>
-    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
-  </p>
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2024
+    <a class="link" href="https://koneko096.github.io/staging">Postmortem</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
 </footer>
 
   </body>

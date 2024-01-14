@@ -7,15 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy; 2024 - Afrizal Fikri</copyright>
-    <lastBuildDate>Fri, 29 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://koneko096.github.io/staging/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kick Start 2022 Round B: Hamiltonian Tour Solution</title>
       <link>https://koneko096.github.io/staging/posts/kickstart-2022/</link>
       <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://koneko096.github.io/staging/posts/kickstart-2022/</guid>
       <description>It&amp;rsquo;s been years since I wrote about algorithms and coding contest. This blog actually was not intended for that purpose because I thought I decided to move on from CP. But when I tried joining Kickstart few days ago, I stumbled upon this unique problem.</description>
     </item>
-    
   </channel>
 </rss>

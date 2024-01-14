@@ -7,15 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy; 2024 - Afrizal Fikri</copyright>
-    <lastBuildDate>Sun, 20 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://koneko096.github.io/staging/tags/github-page/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://koneko096.github.io/staging/tags/github-page/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello World!</title>
       <link>https://koneko096.github.io/staging/posts/hello-world/</link>
       <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://koneko096.github.io/staging/posts/hello-world/</guid>
       <description>Hi again! It&amp;rsquo;s been a while (again) since I wrote some of my thoughts online. Honestly, I don&amp;rsquo;t want to move my posts from blogger. But, since my blogger layout apparently outdated (because of the old layout from the high school), I think I need to archive that old posts.</description>
     </item>
-    
   </channel>
 </rss>

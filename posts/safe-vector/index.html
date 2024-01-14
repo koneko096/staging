@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 
 
 
@@ -12,19 +12,55 @@
 
 
 
-<html lang="en-us">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+>
   <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
 
   
   <title>Work Safely with C&#43;&#43; Vector - Postmortem</title>
 
   
+  <meta name="theme-color" />
+
+  
+  
+  
   
   <meta name="description" content="One of the notable feature of C&#43;&#43; (also C# and Obj-C) is operator overloading. In C&#43;&#43; vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array." />
-  <meta name="author" content="" />
+  <meta name="author" content="Afrizal Fikri" />
   
 
   
@@ -33,10 +69,33 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/app.min.css" />
+  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/main.min.css" />
 
   
-  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/an-old-hope.min.css" />
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/9217338" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/github.svg" />
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/linkedin.svg" />
+  
+  
+
+  
+  
   <script
     defer
     src="https://koneko096.github.io/staging/highlight.min.js"
@@ -45,10 +104,7 @@
   
 
   
-  <link rel="preload" as="image" href="https://koneko096.github.io/staging/theme.png" />
-
   
-  <link rel="preload" as="image" href="https://koneko096.github.io/staging/github.svg" />
   
 
   
@@ -56,134 +112,211 @@
   <link rel="apple-touch-icon" href="https://koneko096.github.io/staging/apple-touch-icon.png" />
 
   
-  <meta name="generator" content="Hugo 0.81.0" />
+  <meta name="generator" content="Hugo 0.121.2">
 
   
   
-
   
   
   
-  
-  
-  
+  <meta itemprop="name" content="Work Safely with C&#43;&#43; Vector">
+<meta itemprop="description" content="One of the notable feature of C&#43;&#43; (also C# and Obj-C) is operator overloading. In C&#43;&#43; vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array."><meta itemprop="datePublished" content="2018-12-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-12-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="189">
+<meta itemprop="keywords" content="debug,error handling," />
   
   <meta property="og:title" content="Work Safely with C&#43;&#43; Vector" />
 <meta property="og:description" content="One of the notable feature of C&#43;&#43; (also C# and Obj-C) is operator overloading. In C&#43;&#43; vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koneko096.github.io/staging/posts/safe-vector/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2018-12-16T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2018-12-16T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2018-12-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-12-16T00:00:00+00:00" />
 
 
   
-  <meta itemprop="name" content="Work Safely with C&#43;&#43; Vector">
-<meta itemprop="description" content="One of the notable feature of C&#43;&#43; (also C# and Obj-C) is operator overloading. In C&#43;&#43; vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array."><meta itemprop="datePublished" content="2018-12-16T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-12-16T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="188">
-<meta itemprop="keywords" content="debug,error handling," />
-  
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Work Safely with C&#43;&#43; Vector"/>
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Work Safely with C&#43;&#43; Vector"/>
 <meta name="twitter:description" content="One of the notable feature of C&#43;&#43; (also C# and Obj-C) is operator overloading. In C&#43;&#43; vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array."/>
 
   
   
+  
+  <link rel="canonical" href="https://koneko096.github.io/staging/posts/safe-vector/" />
+  
+  
 </head>
 
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="https://koneko096.github.io/staging"
+      >Postmortem</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
 
-  <body class="not-ready" data-menu="true">
-    <header class="header">
-  
-  <p class="logo">
-    <a class="site-name" href="https://koneko096.github.io/staging">Postmortem</a><a class="btn-dark"></a>
-  </p>
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
   
 
   <script>
-    let bodyClx = document.body.classList;
-    let btnDark = document.querySelector('.btn-dark');
-    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
-    let darkVal = localStorage.getItem('dark');
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
 
-    let setDark = (isDark) => {
-      bodyClx[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
     };
 
-    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
-    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
 
-    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
-    sysDark.addEventListener('change', (event) => setDark(event.matches));
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
   </script>
 
-  
-  
-  <nav class="menu">
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
     
-    <a class="" href="https://koneko096.github.io/staging/posts/faq/">FAQ</a>
     
-  </nav>
-  
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="https://koneko096.github.io/staging/posts/faq/"
+        >FAQ</a
+      >
+      
+    </nav>
+    
 
-  
-  <nav class="social">
     
-    <a
-      class="github"
-      style="--url: url(./github.svg)"
-      href="https://github.com/koneko096"
-      target="_blank"
-    ></a>
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/koneko096"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/afrizalf"
+        target="_blank"
+        rel="me"
+      >
+        linkedin
+      </a>
+      
+    </nav>
     
-  </nav>
-  
+  </div>
 </header>
 
 
-    <main class="main">
-
-<article class="post-single">
-  <header class="post-title">
-    <aside>
-      <time>December 16, 2018</time>
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
       
-    </aside>
-    <h1>Work Safely with C&#43;&#43; Vector</h1>
+
+<article>
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">Work Safely with C&#43;&#43; Vector</h1>
+
+    
+    <div class="text-sm antialiased opacity-60">
+      
+      <time>Dec 16, 2018</time>
+      
+      
+      
+      
+    </div>
+    
   </header>
-  <section class="post-content"><p>One of the notable feature of C++ (also C# and Obj-C) is operator overloading. In C++ vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array. But there are problems with it. As the original behavior of array, accessing index out of allocated size will cause undefined behavior. Vector just doing so by preserving this behavior to the operator.</p>
-<figure>
-    <img src="https://i.redd.it/wzr2x3zklg211.png"/> 
+
+  <section><p>One of the notable feature of C++ (also C# and Obj-C) is operator overloading. In C++ vector, element can be accessed use &ldquo;[]&rdquo; bracket operator. Sounds good just like we accessing ordinary array. But there are problems with it. As the original behavior of array, accessing index out of allocated size will cause undefined behavior. Vector just doing so by preserving this behavior to the operator.</p>
+<figure><img src="https://i.redd.it/wzr2x3zklg211.png"/>
 </figure>
 
 <p>This design is leveraging explicit checking everytime before element access performed. This done pretty well to prevent <a href="http://wiki.c2.com/?LeakyAbstraction">leaky abstraction</a>. But debugging will be hard because of generic error. In my case, I had to deal with CUDA kernel allocation too, so this kind of error message could not help at all.</p>
 <p>Fortunately, std vector come with different method to get out of bound error. Instead of bracket operator, we can rely on <em>at</em> method. This way error handling become much easier. Here&rsquo;s an example.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdexcept&gt;    // out_of_range</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">try</span> {
-        v.at(<span style="color:#ae81ff">15</span>);
-    }
-    <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> out_of_range<span style="color:#f92672">&amp;</span> e) {
-        cerr <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Error while access vector: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> e.what() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdexcept&gt;</span><span style="color:#75715e">    </span><span style="color:#75715e">// out_of_range
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        v.at(<span style="color:#ae81ff">15</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> out_of_range<span style="color:#f92672">&amp;</span> e) {
+</span></span><span style="display:flex;"><span>        cerr <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Error while access vector: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> e.what() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 </section>
 
   
   
-  <footer class="post-tags">
+  <footer class="mt-12 flex flex-wrap">
      
-    <a href="https://koneko096.github.io/staging/tags/debug">debug</a>
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/debug"
+      >debug</a
+    >
      
-    <a href="https://koneko096.github.io/staging/tags/error-handling">error handling</a>
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/error-handling"
+      >error handling</a
+    >
     
   </footer>
   
@@ -191,27 +324,57 @@
   
   
   
-  <nav class="post-nav">
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
     
-    <a class="prev" href="https://koneko096.github.io/staging/posts/jungle-test/"><span>←</span><span>Testing Entire Jungle</span></a>
-     
-    <a class="next" href="https://koneko096.github.io/staging/posts/asdf/"><span>asdf -- Simple and Customizable One-for-all Version Manager</span><span>→</span></a>
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://koneko096.github.io/staging/posts/jungle-test/"
+      ><span class="mr-1.5">←</span><span>Testing Entire Jungle</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://koneko096.github.io/staging/posts/asdf/"
+      ><span>asdf -- Simple and Customizable One-for-all Version Manager</span><span class="ml-1.5">→</span></a
+    >
     
   </nav>
   
+  
 
   
+  
+
+  
+  
+
+  
+
   
 </article>
 
-</main>
 
-    <footer class="footer">
-  <p>&copy; 2024 <a href="https://koneko096.github.io/staging">Postmortem</a></p>
-  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
-  <p>
-    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
-  </p>
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2024
+    <a class="link" href="https://koneko096.github.io/staging">Postmortem</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
 </footer>
 
   </body>
