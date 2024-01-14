@@ -36,6 +36,8 @@
 
 
 
+
+
 <html
   class="not-ready lg:text-base"
   style="--bg: #faf8f1"
@@ -91,6 +93,8 @@
   <link rel="preload" as="image" href="https://koneko096.github.io/staging/github.svg" />
   
   <link rel="preload" as="image" href="https://koneko096.github.io/staging/linkedin.svg" />
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/rss.svg" />
   
   
 
@@ -252,6 +256,16 @@
         linkedin
       </a>
       
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./rss.svg)"
+        href="https://koneko096.github.io/staging/index.xml"
+        target="_blank"
+        rel="alternate"
+      >
+        rss
+      </a>
+      
     </nav>
     
   </div>
@@ -283,8 +297,8 @@
 <p>Even though this is the least solved problem in this round, the problem itself actually not that hard. No esoteric techniques needed (like greedy, DnC, or DP), and even no complex data structure used in for this problem. I can argue that it is an example of good coding interview problem (sure, I will talk more about coding interview in another post).</p>
 <h2 id="problem-description">Problem Description</h2>
 <p>Kick Start is one of Google annual coding tests beside Code Jam and Hash Code. But this contest is a bit different. The prizes for the top contestants are job opportunity at Google, not money.</p>
-<p>Complete description can be viewed <a href="https://codingcompetitions.withgoogle.com/kickstart/round/00000000008caa74/0000000000acf318">here</a>. Given a N x M terrain with obstacles, each cell consists of 2x2 minicells. You start from top left corner (1,1). You have to find a way to visit each minicell <em>exactly once</em> and come back to initial corner, if any. You can only move into four true neighbors (no diagonal move).</p>
-<figure><img src="https://codejam.googleapis.com/dashboard/get_file/AQj_6U32_0J5YBAoNnQ3fGCopyxBqak78IdIxW1-INgCDqKp65LFlrrPgjKzBFwegZ6aVOcOwnqLdOM/case2.png"/>
+<p>Complete description can be viewed <a href="https://github.com/google/coding-competitions-archive/blob/main/kickstart/2022/round_b/hamiltonian_tour/statement.pdf">here</a>. Given a N x M terrain with obstacles, each cell consists of 2x2 minicells. You start from top left corner (1,1). You have to find a way to visit each minicell <em>exactly once</em> and come back to initial corner, if any. You can only move into four true neighbors (no diagonal move).</p>
+<figure><img src="https://koneko096.github.io/staging/img/hamilton.png"/>
 </figure>
 
 <p>Google has released the official analysis. But I found it too difficult to understand. So, here I try to simplifying things for you guys with more intuitive way.</p>
