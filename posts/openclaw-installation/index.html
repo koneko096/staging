@@ -61,7 +61,7 @@
   
   
   
-  <meta name="description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities." />
+  <meta name="description" content="This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities." />
   <meta name="author" content="Afrizal Fikri" />
   
 
@@ -124,13 +124,13 @@
   
   
   <meta itemprop="name" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo">
-<meta itemprop="description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities."><meta itemprop="datePublished" content="2026-02-20T00:00:00+00:00" />
+<meta itemprop="description" content="This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities."><meta itemprop="datePublished" content="2026-02-20T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2026-02-20T00:00:00+00:00" />
-<meta itemprop="wordCount" content="856">
+<meta itemprop="wordCount" content="1149">
 <meta itemprop="keywords" content="OpenClaw,AI Assistant,Installation,Telegram,DDG," />
   
   <meta property="og:title" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo" />
-<meta property="og:description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities." />
+<meta property="og:description" content="This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koneko096.github.io/staging/posts/openclaw-installation/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2026-02-20T00:00:00+00:00" />
@@ -139,7 +139,7 @@
 
   
   <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo"/>
-<meta name="twitter:description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities."/>
+<meta name="twitter:description" content="This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities."/>
 
   
   
@@ -293,8 +293,7 @@
     
   </header>
 
-  <section><h1 id="installing-and-integrating-openclaw-locally-with-telegram-and-duckduckgo">Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo</h1>
-<p>This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities.</p>
+  <section><p>This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Before you begin, ensure you have the following installed on your system:</p>
 <ul>
@@ -325,33 +324,40 @@ To start OpenClaw, simply type:</p>
 </li>
 </ol>
 <h2 id="integrating-with-telegram">Integrating with Telegram</h2>
-<p>To enable OpenClaw to interact via Telegram, you need to configure the Telegram plugin.</p>
+<p>To enable OpenClaw to interact seamlessly via Telegram, you need to configure the Telegram channel within your <code>config.yaml</code>. This involves obtaining a bot token and setting up appropriate access controls.</p>
 <ol>
 <li>
-<p><strong>Obtain a Telegram Bot Token:</strong></p>
+<p><strong>Create a Telegram Bot and Obtain Token:</strong></p>
 <ul>
-<li>Talk to BotFather on Telegram (@BotFather).</li>
-<li>Send <code>/newbot</code> and follow the instructions to create a new bot.</li>
-<li>BotFather will give you an API Token. Keep this token secure.</li>
+<li>Initiate a chat with the official BotFather on Telegram (@BotFather).</li>
+<li>Send the <code>/newbot</code> command and follow the prompts to create your new bot.</li>
+<li>BotFather will provide you with an API Token. <strong>Crucially, keep this token secure and never share it publicly.</strong></li>
 </ul>
 </li>
 <li>
 <p><strong>Configure <code>config.yaml</code> for Telegram:</strong>
-Edit your <code>config.yaml</code> file to add the Telegram channel details. Look for the <code>channels</code> section and add or modify the Telegram entry:</p>
+Edit your <code>config.yaml</code> file (located in your OpenClaw home directory, e.g., <code>~/.openclaw/config.yaml</code>). Add or modify the <code>channels</code> section to include your Telegram bot&rsquo;s details and access policies:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">channels</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">telegram</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">token</span>: <span style="color:#e6db74">&#34;YOUR_TELEGRAM_BOT_TOKEN&#34;</span> <span style="color:#75715e"># Replace with your actual token</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># You might also want to add allowed_users or allowed_chats for security</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># allowed_users:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   - &#34;YOUR_TELEGRAM_USER_ID&#34;</span>
-</span></span></code></pre></div><p>Replace <code>&quot;YOUR_TELEGRAM_BOT_TOKEN&quot;</code> with the token you obtained from BotFather. You can find your Telegram user ID by messaging <code>@userinfobot</code> on Telegram.</p>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">token</span>: <span style="color:#e6db74">&#34;YOUR_TELEGRAM_BOT_TOKEN&#34;</span> <span style="color:#75715e"># Replace with your actual Bot API Token</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dmPolicy</span>: <span style="color:#e6db74">&#34;allowlist&#34;</span>            <span style="color:#75715e"># Recommended: only allowed users can DM your bot</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">allowFrom</span>:                     <span style="color:#75715e"># List of numeric Telegram User IDs allowed to interact via DM</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;YOUR_TELEGRAM_USER_ID&#34;</span>      <span style="color:#75715e"># Replace with your Telegram user ID</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># For group chats, consider:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># groupPolicy: &#34;allowlist&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># groups:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   &#34;-1001234567890&#34;: # Example group chat ID (prefix with -100)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     groupPolicy: &#34;open&#34; # Or &#34;allowlist&#34; with groupAllowFrom</span>
+</span></span></code></pre></div><ul>
+<li><strong>Finding your Telegram User ID:</strong> The safest way is to DM your bot, then run <code>openclaw logs --follow</code> in your terminal and look for the <code>from.id</code> in the inbound message log. Alternatively, you can message <code>@userinfobot</code> on Telegram.</li>
+<li>Replace <code>&quot;YOUR_TELEGRAM_BOT_TOKEN&quot;</code> and <code>&quot;YOUR_TELEGRAM_USER_ID&quot;</code> with your actual values.</li>
+</ul>
 </li>
 <li>
 <p><strong>Restart OpenClaw:</strong>
-After modifying <code>config.yaml</code>, restart OpenClaw for the changes to take effect.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm restart <span style="color:#75715e"># if using npm start directly, you&#39;ll need to stop and start again</span>
-</span></span></code></pre></div></li>
+For the changes in <code>config.yaml</code> to take effect, you must restart your OpenClaw instance. If you used <code>openclaw start</code>, you&rsquo;ll need to stop and then start it again. If running with <code>pm2</code> or a similar process manager, use its restart command.</p>
+</li>
 </ol>
 <h2 id="integrating-duckduckgo-search">Integrating DuckDuckGo Search</h2>
 <p>OpenClaw can leverage DuckDuckGo for web searches through its <code>ddg-search</code> skill, which is often included by default and requires minimal setup.</p>
@@ -370,6 +376,23 @@ With the <code>ddg-search</code> skill available, you can simply ask OpenClaw to
 </li>
 </ol>
 <p>This comprehensive setup will provide you with a powerful, locally-hosted AI assistant capable of interacting through Telegram and performing web searches via DuckDuckGo, laying the foundation for even more advanced AI capabilities.</p>
+<h2 id="integrating-gemini-models-with-openclaw">Integrating Gemini Models with OpenClaw</h2>
+<p>To harness the power of Google&rsquo;s Gemini models directly within OpenClaw, you need to enable the dedicated Gemini plugin and authenticate your access. This integration allows OpenClaw to utilize Gemini for its AI-driven tasks.</p>
+<p><strong>Prerequisite:</strong> Ensure you have the Gemini CLI installed as described in the &ldquo;Installing and Configuring Gemini CLI&rdquo; section below.</p>
+<ol>
+<li>
+<p><strong>Enable the Gemini Plugin:</strong>
+OpenClaw uses a plugin to facilitate interaction with Gemini models. Enable it using the <code>plugins enable</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>openclaw plugins enable google-gemini-cli-auth
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Authenticate and Set Default Model:</strong>
+After enabling the plugin, you need to log in to your Google account to authenticate with Gemini. This process automatically sets up the necessary OAuth tokens. You can also set Gemini as your default model provider:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>openclaw models auth login --provider google-gemini-cli --set-default
+</span></span></code></pre></div><p>Follow the on-screen prompts to complete the Google authentication flow. This command stores the OAuth tokens securely within your OpenClaw gateway host.</p>
+</li>
+</ol>
+<p>Once configured, OpenClaw will be able to access and utilize the Gemini models for tasks that require advanced AI capabilities, seamlessly integrating with your local assistant setup.</p>
 <h2 id="installing-and-configuring-gemini-cli">Installing and Configuring Gemini CLI</h2>
 <p>The Gemini Command Line Interface (CLI) allows you to interact with Google&rsquo;s Gemini models directly from your terminal, offering a powerful way to integrate advanced AI capabilities into your workflow.</p>
 <h3 id="installation">Installation</h3>
