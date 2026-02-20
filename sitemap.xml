@@ -2,28 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://koneko096.github.io/staging/tags/agentic/</loc>
+    <lastmod>2026-02-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://koneko096.github.io/staging/tags/ai/</loc>
+    <lastmod>2026-02-20T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://koneko096.github.io/staging/categories/ai/</loc>
     <lastmod>2026-02-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://koneko096.github.io/staging/tags/ai-assistant/</loc>
+    <loc>https://koneko096.github.io/staging/tags/automation/</loc>
     <lastmod>2026-02-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://koneko096.github.io/staging/categories/</loc>
     <lastmod>2026-02-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://koneko096.github.io/staging/tags/ddg/</loc>
-    <lastmod>2026-02-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://koneko096.github.io/staging/posts/openclaw-installation/</loc>
     <lastmod>2026-02-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://koneko096.github.io/staging/tags/installation/</loc>
-    <lastmod>2026-02-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://koneko096.github.io/staging/tags/openclaw/</loc>
-    <lastmod>2026-02-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://koneko096.github.io/staging/categories/openclaw/</loc>
+    <loc>https://koneko096.github.io/staging/tags/llm/</loc>
     <lastmod>2026-02-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://koneko096.github.io/staging/</loc>
@@ -33,12 +30,6 @@
     <lastmod>2026-02-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://koneko096.github.io/staging/tags/</loc>
-    <lastmod>2026-02-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://koneko096.github.io/staging/tags/telegram/</loc>
-    <lastmod>2026-02-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://koneko096.github.io/staging/categories/tutorial/</loc>
     <lastmod>2026-02-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://koneko096.github.io/staging/tags/algorithm/</loc>
@@ -95,9 +86,6 @@
     <loc>https://koneko096.github.io/staging/tags/parallel-computing/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://koneko096.github.io/staging/tags/automation/</loc>
-    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://koneko096.github.io/staging/tags/bug/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
   </url><url>
@@ -146,19 +134,19 @@
     <loc>https://koneko096.github.io/staging/tags/version-manager/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://koneko096.github.io/staging/categories/artificial-intelligence/</loc>
-    <lastmod>2018-01-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://koneko096.github.io/staging/categories/deep-learning/</loc>
+    <loc>https://koneko096.github.io/staging/tags/deep-learning/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://koneko096.github.io/staging/posts/atari-pong/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://koneko096.github.io/staging/categories/machine-learning/</loc>
+    <loc>https://koneko096.github.io/staging/tags/experiment/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://koneko096.github.io/staging/categories/reinforcement-learning/</loc>
+    <loc>https://koneko096.github.io/staging/tags/machine-learning/</loc>
+    <lastmod>2018-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://koneko096.github.io/staging/tags/reinforcement-learning/</loc>
     <lastmod>2018-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://koneko096.github.io/staging/categories/bug/</loc>
