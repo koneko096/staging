@@ -1,0 +1,467 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo - Postmortem</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities." />
+  <meta name="author" content="Afrizal Fikri" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://koneko096.github.io/staging/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/9217338" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/github.svg" />
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/linkedin.svg" />
+  
+  <link rel="preload" as="image" href="https://koneko096.github.io/staging/rss.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="https://koneko096.github.io/staging/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+
+  
+  <link rel="icon" href="https://koneko096.github.io/staging/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://koneko096.github.io/staging/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.121.2">
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo">
+<meta itemprop="description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities."><meta itemprop="datePublished" content="2026-02-20T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2026-02-20T00:00:00+00:00" />
+<meta itemprop="wordCount" content="459">
+<meta itemprop="keywords" content="OpenClaw,AI Assistant,Installation,Telegram,DDG," />
+  
+  <meta property="og:title" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo" />
+<meta property="og:description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koneko096.github.io/staging/posts/openclaw-installation/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-02-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-02-20T00:00:00+00:00" />
+
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo"/>
+<meta name="twitter:description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities."/>
+
+  
+  
+  
+  <link rel="canonical" href="https://koneko096.github.io/staging/posts/openclaw-installation/" />
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="https://koneko096.github.io/staging"
+      >Postmortem</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="https://koneko096.github.io/staging/posts/faq/"
+        >FAQ</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/koneko096"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/afrizalf"
+        target="_blank"
+        rel="me"
+      >
+        linkedin
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./rss.svg)"
+        href="https://koneko096.github.io/staging/index.xml"
+        target="_blank"
+        rel="alternate"
+      >
+        rss
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo</h1>
+
+    
+    <div class="text-sm antialiased opacity-60">
+      
+      <time>Feb 20, 2026</time>
+      
+      
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h1 id="installing-and-integrating-openclaw-locally-with-telegram-and-duckduckgo">Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo</h1>
+<p>This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you begin, ensure you have the following installed on your system:</p>
+<ul>
+<li><strong>Git:</strong> For cloning the OpenClaw repository.</li>
+<li><strong>Node.js (LTS version recommended):</strong> OpenClaw is built on Node.js.</li>
+</ul>
+<h2 id="local-installation-of-openclaw">Local Installation of OpenClaw</h2>
+<p>Follow these steps to get OpenClaw up and running:</p>
+<ol>
+<li>
+<p><strong>Clone the OpenClaw Repository:</strong>
+Open your terminal or command prompt and execute:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/openclaw/openclaw.git
+</span></span><span style="display:flex;"><span>cd openclaw
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Install Dependencies:</strong>
+Navigate into the cloned directory and install the necessary Node.js packages:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Configure OpenClaw:</strong>
+OpenClaw uses a <code>config.yaml</code> file for configuration. You&rsquo;ll likely need to create one by copying the example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp config.example.yaml config.yaml
+</span></span></code></pre></div><p>Then, open <code>config.yaml</code> in your preferred text editor to customize settings.</p>
+</li>
+<li>
+<p><strong>Run OpenClaw:</strong>
+You can start OpenClaw using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm start
+</span></span></code></pre></div><p>For persistent operation, consider using a process manager like <code>pm2</code>.</p>
+</li>
+</ol>
+<h2 id="integrating-with-telegram">Integrating with Telegram</h2>
+<p>To enable OpenClaw to interact via Telegram, you need to configure the Telegram plugin.</p>
+<ol>
+<li>
+<p><strong>Obtain a Telegram Bot Token:</strong></p>
+<ul>
+<li>Talk to BotFather on Telegram (@BotFather).</li>
+<li>Send <code>/newbot</code> and follow the instructions to create a new bot.</li>
+<li>BotFather will give you an API Token. Keep this token secure.</li>
+</ul>
+</li>
+<li>
+<p><strong>Configure <code>config.yaml</code> for Telegram:</strong>
+Edit your <code>config.yaml</code> file to add the Telegram channel details. Look for the <code>channels</code> section and add or modify the Telegram entry:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">channels</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">telegram</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">token</span>: <span style="color:#e6db74">&#34;YOUR_TELEGRAM_BOT_TOKEN&#34;</span> <span style="color:#75715e"># Replace with your actual token</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># You might also want to add allowed_users or allowed_chats for security</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># allowed_users:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   - &#34;YOUR_TELEGRAM_USER_ID&#34;</span>
+</span></span></code></pre></div><p>Replace <code>&quot;YOUR_TELEGRAM_BOT_TOKEN&quot;</code> with the token you obtained from BotFather. You can find your Telegram user ID by messaging <code>@userinfobot</code> on Telegram.</p>
+</li>
+<li>
+<p><strong>Restart OpenClaw:</strong>
+After modifying <code>config.yaml</code>, restart OpenClaw for the changes to take effect.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm restart <span style="color:#75715e"># if using npm start directly, you&#39;ll need to stop and start again</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="integrating-duckduckgo-search">Integrating DuckDuckGo Search</h2>
+<p>OpenClaw can leverage DuckDuckGo for web searches using a built-in skill. This often requires minimal configuration.</p>
+<ol>
+<li>
+<p><strong>Ensure <code>ddg-search</code> Skill is Present:</strong>
+OpenClaw typically includes a <code>ddg-search</code> skill by default. You can verify its presence by listing available skills. If it&rsquo;s missing, you may need to add it to your <code>skills</code> directory or enable it in <code>config.yaml</code> if it&rsquo;s a bundled skill.</p>
+</li>
+<li>
+<p><strong>No API Key Required:</strong>
+The <code>ddg-search</code> skill usually does not require an API key, making it straightforward to use. OpenClaw will automatically use this skill when you ask it to search the web.</p>
+</li>
+<li>
+<p><strong>Usage:</strong>
+Once integrated, you can simply ask OpenClaw to search for information, e.g., &ldquo;Search for the latest news on AI.&rdquo;</p>
+</li>
+</ol>
+<p>This comprehensive setup will provide you with a powerful, locally-hosted AI assistant capable of interacting through Telegram and performing web searches via DuckDuckGo.</p>
+</section>
+
+  
+  
+  <footer class="mt-12 flex flex-wrap">
+     
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/openclaw"
+      >OpenClaw</a
+    >
+     
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/ai-assistant"
+      >AI Assistant</a
+    >
+     
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/installation"
+      >Installation</a
+    >
+     
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/telegram"
+      >Telegram</a
+    >
+     
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://koneko096.github.io/staging/tags/ddg"
+      >DDG</a
+    >
+    
+  </footer>
+  
+
+  
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://koneko096.github.io/staging/posts/kickstart-2022/"
+      ><span>Kick Start 2022 Round B: Hamiltonian Tour Solution</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2026
+    <a class="link" href="https://koneko096.github.io/staging">Postmortem</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
+</footer>
+
+  </body>
+</html>
