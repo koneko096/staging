@@ -126,7 +126,7 @@
   <meta itemprop="name" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo">
 <meta itemprop="description" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo This guide will walk you through setting up OpenClaw, a powerful AI assistant, on your local machine, and integrating it with Telegram for seamless communication and DuckDuckGo for web search capabilities."><meta itemprop="datePublished" content="2026-02-20T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2026-02-20T00:00:00+00:00" />
-<meta itemprop="wordCount" content="459">
+<meta itemprop="wordCount" content="856">
 <meta itemprop="keywords" content="OpenClaw,AI Assistant,Installation,Telegram,DDG," />
   
   <meta property="og:title" content="Installing and Integrating OpenClaw Locally with Telegram and DuckDuckGo" />
@@ -298,34 +298,30 @@
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Before you begin, ensure you have the following installed on your system:</p>
 <ul>
-<li><strong>Git:</strong> For cloning the OpenClaw repository.</li>
-<li><strong>Node.js (LTS version recommended):</strong> OpenClaw is built on Node.js.</li>
+<li><strong>Node.js (LTS version recommended):</strong> OpenClaw is built on Node.js and requires it for execution.</li>
 </ul>
 <h2 id="local-installation-of-openclaw">Local Installation of OpenClaw</h2>
-<p>Follow these steps to get OpenClaw up and running:</p>
+<p>The recommended and simplest way to install OpenClaw is via its global npm package. This method handles Node.js dependencies and sets up OpenClaw for immediate use without needing to clone the entire repository.</p>
 <ol>
 <li>
-<p><strong>Clone the OpenClaw Repository:</strong>
-Open your terminal or command prompt and execute:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/openclaw/openclaw.git
-</span></span><span style="display:flex;"><span>cd openclaw
-</span></span></code></pre></div></li>
+<p><strong>Install OpenClaw Globally:</strong>
+Open your terminal or command prompt and execute the following command. Depending on your system, you might need administrator privileges (e.g., <code>sudo</code> on Linux/macOS, or an elevated command prompt on Windows).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g openclaw@latest
+</span></span></code></pre></div><p>This command installs the OpenClaw CLI tool globally on your system.</p>
+</li>
 <li>
-<p><strong>Install Dependencies:</strong>
-Navigate into the cloned directory and install the necessary Node.js packages:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install
-</span></span></code></pre></div></li>
-<li>
-<p><strong>Configure OpenClaw:</strong>
-OpenClaw uses a <code>config.yaml</code> file for configuration. You&rsquo;ll likely need to create one by copying the example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp config.example.yaml config.yaml
+<p><strong>Initial Configuration (Optional):</strong>
+After installation, you can run the <code>openclaw configure</code> command to set up essential configurations, such as your OpenAI API key or other integrations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>openclaw configure
+</span></span></code></pre></div><p>Alternatively, for advanced setups, you can manually create a <code>config.yaml</code> file in your OpenClaw home directory (usually <code>~/.openclaw</code> or <code>C:\Users\&lt;username&gt;\.openclaw</code>) by copying the example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp ~/.openclaw/config.example.yaml ~/.openclaw/config.yaml
 </span></span></code></pre></div><p>Then, open <code>config.yaml</code> in your preferred text editor to customize settings.</p>
 </li>
 <li>
 <p><strong>Run OpenClaw:</strong>
-You can start OpenClaw using:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm start
-</span></span></code></pre></div><p>For persistent operation, consider using a process manager like <code>pm2</code>.</p>
+To start OpenClaw, simply type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>openclaw start
+</span></span></code></pre></div><p>For persistent operation, especially on servers, consider using a process manager like <code>pm2</code> or a system service.</p>
 </li>
 </ol>
 <h2 id="integrating-with-telegram">Integrating with Telegram</h2>
@@ -358,22 +354,66 @@ After modifying <code>config.yaml</code>, restart OpenClaw for the changes to ta
 </span></span></code></pre></div></li>
 </ol>
 <h2 id="integrating-duckduckgo-search">Integrating DuckDuckGo Search</h2>
-<p>OpenClaw can leverage DuckDuckGo for web searches using a built-in skill. This often requires minimal configuration.</p>
+<p>OpenClaw can leverage DuckDuckGo for web searches through its <code>ddg-search</code> skill, which is often included by default and requires minimal setup.</p>
 <ol>
 <li>
-<p><strong>Ensure <code>ddg-search</code> Skill is Present:</strong>
-OpenClaw typically includes a <code>ddg-search</code> skill by default. You can verify its presence by listing available skills. If it&rsquo;s missing, you may need to add it to your <code>skills</code> directory or enable it in <code>config.yaml</code> if it&rsquo;s a bundled skill.</p>
+<p><strong>Verify <code>ddg-search</code> Skill Availability:</strong>
+OpenClaw&rsquo;s skills are managed within your OpenClaw workspace (typically <code>~/.openclaw/workspace/skills</code>). The <code>ddg-search</code> skill should be present there. You can list your active skills using <code>openclaw skills list</code> to confirm its availability.</p>
 </li>
 <li>
-<p><strong>No API Key Required:</strong>
-The <code>ddg-search</code> skill usually does not require an API key, making it straightforward to use. OpenClaw will automatically use this skill when you ask it to search the web.</p>
+<p><strong>No API Key or Configuration Needed:</strong>
+A significant advantage of the <code>ddg-search</code> skill is that it operates without requiring an external API key or additional configuration in your <code>config.yaml</code>. OpenClaw is designed to automatically utilize this skill when you make a web search request.</p>
 </li>
 <li>
 <p><strong>Usage:</strong>
-Once integrated, you can simply ask OpenClaw to search for information, e.g., &ldquo;Search for the latest news on AI.&rdquo;</p>
+With the <code>ddg-search</code> skill available, you can simply ask OpenClaw to find information for you, for example: &ldquo;Search for the latest trends in generative AI.&rdquo;</p>
 </li>
 </ol>
-<p>This comprehensive setup will provide you with a powerful, locally-hosted AI assistant capable of interacting through Telegram and performing web searches via DuckDuckGo.</p>
+<p>This comprehensive setup will provide you with a powerful, locally-hosted AI assistant capable of interacting through Telegram and performing web searches via DuckDuckGo, laying the foundation for even more advanced AI capabilities.</p>
+<h2 id="installing-and-configuring-gemini-cli">Installing and Configuring Gemini CLI</h2>
+<p>The Gemini Command Line Interface (CLI) allows you to interact with Google&rsquo;s Gemini models directly from your terminal, offering a powerful way to integrate advanced AI capabilities into your workflow.</p>
+<h3 id="installation">Installation</h3>
+<p>The easiest way to install the Gemini CLI is via <code>npm</code> (Node Package Manager) globally:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g @google/gemini-cli
+</span></span></code></pre></div><p>Depending on your operating system and npm setup, you might need to run this command with <code>sudo</code> (Linux/macOS) or in an elevated command prompt (Windows).</p>
+<h3 id="authentication-and-model-setup">Authentication and Model Setup</h3>
+<p>To use the Gemini CLI, you need to authenticate with your Google account and often provide an API key.</p>
+<ol>
+<li>
+<p><strong>Obtain a Gemini API Key:</strong></p>
+<ul>
+<li>Visit <a href="https://aistudio.google.com/">Google AI Studio</a>.</li>
+<li>Generate a new API key. Keep this key secure and do not share it publicly.</li>
+</ul>
+</li>
+<li>
+<p><strong>Configure the API Key:</strong>
+You can make your API key available to the Gemini CLI in a few ways:</p>
+<ul>
+<li>
+<p><strong>Using the <code>gemini config</code> command:</strong>
+This is the recommended method for persistent configuration.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gemini config set api-key YOUR_GEMINI_API_KEY
+</span></span></code></pre></div><p>Replace <code>YOUR_GEMINI_API_KEY</code> with the actual key you obtained from Google AI Studio.</p>
+</li>
+<li>
+<p><strong>Using an environment variable:</strong>
+For temporary use or in scripts, you can set the <code>GOOGLE_API_KEY</code> environment variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export GOOGLE_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;YOUR_GEMINI_API_KEY&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For Windows Command Prompt: set GOOGLE_API_KEY=&#34;YOUR_GEMINI_API_KEY&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For Windows PowerShell: $env:GOOGLE_API_KEY=&#34;YOUR_GEMINI_API_KEY&#34;</span>
+</span></span></code></pre></div><p>Note that environment variables are usually session-specific. For permanent environment variables, you&rsquo;ll need to add them to your shell&rsquo;s profile file (e.g., <code>.bashrc</code>, <code>.zshrc</code>, or system environment variables on Windows).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Verify Installation:</strong>
+You can test your Gemini CLI installation and configuration by running a simple command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gemini models list
+</span></span></code></pre></div><p>This command should list the available Gemini models if your setup is correct.</p>
+</li>
+</ol>
+<p>With the Gemini CLI installed and configured, you can now leverage powerful AI models for various tasks directly from your command line, complementing your OpenClaw assistant capabilities.</p>
 </section>
 
   
