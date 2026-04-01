@@ -295,13 +295,13 @@
 
   <section><p>This is my first post in this year and also my first post about machine learning. Formerly, I think I am gonna make this blog only for low-level and security playground only &ndash;that&rsquo;s why the name is postmortem. But, as you know life is dynamic! That&rsquo;s makes it interesting &#x1f603;</p>
 <h1 id="prelude">Prelude</h1>
-<p>It&rsquo;s been over a year since AlphaGo wins its match versus Lee Sedol with great victory. And not so long ago, AlphaGo Zero &ndash;self taught version of AlphaGo&ndash; has been <a href="https://deepmind.com/blog/alphago-zero-learning-scratch/">published</a>. One of the core component of AlphaGo is DQN &ndash;deep Q-network which had successfully completed a diverse of <a href="https://deepmind.com/research/dqn/">classic Atari games</a>.</p>
+<p>It&rsquo;s been over a year since AlphaGo wins its match versus Lee Sedol with great victory. And not so long ago, AlphaGo Zero &ndash;self taught version of AlphaGo&ndash; has been <a href="https://deepmind.google/blog/alphago-zero-starting-from-scratch/">published</a>. One of the core component of AlphaGo is DQN &ndash;deep Q-network which had successfully completed a diverse of <a href="https://deepmind.google/blog/deep-reinforcement-learning/">classic Atari games</a>.</p>
 <figure><img src="https://web.archive.org/web/20200618130300if_/https://boygeniusreport.files.wordpress.com/2016/03/google-alphago-go-win.jpg?quality=70&amp;strip=all&amp;w=782"/><figcaption>
             <h4>Lee Sedol during the match</h4>
         </figcaption>
 </figure>
 
-<p>Following the success of DQN, deep reinforcement learning (RL) at general has gained much popularity. The recent breakthroughs from OpenAI been released (like <a href="http://www.gamersgreed.com/openai-uses-gta-v-to-train-ai-for-driving/">this</a> and <a href="https://blog.openai.com/more-on-dota-2/">this</a>), has proved further capabilities of deep RL. In this post, I&rsquo;m going to tell my story about building a simple deep RL agent to play Atari Pong.</p>
+<p>Following the success of DQN, deep reinforcement learning (RL) at general has gained much popularity. The recent breakthroughs from OpenAI been released (like <a href="https://www.forbes.com/sites/aarontilley/2017/10/04/grand-theft-auto-v-the-rise-and-fall-of-the-diy-self-driving-car-lab/">this</a> and <a href="https://openai.com/index/more-on-dota-2/">this</a>), has proved further capabilities of deep RL. In this post, I&rsquo;m going to tell my story about building a simple deep RL agent to play Atari Pong.</p>
 <h1 id="lets-start-with-some-theory">Lets Start with Some Theory</h1>
 <p>Before we dive into RL, I suggest you to understand about machine learning in general and a bit about Python and linear algebra. If you need resources about it, here are bunch of interesting resources to learn ML:</p>
 <ul>
@@ -318,7 +318,7 @@
         </figcaption>
 </figure>
 
-<p>Main goal of RL is to determine the best policy in order to maximize the <em>expected rewards</em>. We can imagine a policy as a path need to be taken to reach the goal. The longer the path taken, the least score can be obtained. If we for example, take the &ldquo;dangerous&rdquo; path which contains trap, we get the penalty and reducing the final score too. To achieve the best policy, sometimes we need to leave the most promising policy to explore another uncertain policy. This problem known as <a href="https://towardsdatascience.com/intuition-exploration-vs-exploitation-c645a1d37c7a"><strong>exploration vs exploitation dilemma</strong></a>.</p>
+<p>Main goal of RL is to determine the best policy in order to maximize the <em>expected rewards</em>. We can imagine a policy as a path need to be taken to reach the goal. The longer the path taken, the least score can be obtained. If we for example, take the &ldquo;dangerous&rdquo; path which contains trap, we get the penalty and reducing the final score too. To achieve the best policy, sometimes we need to leave the most promising policy to explore another uncertain policy. This problem known as <a href="https://www.youtube.com/watch?v=XppywGzhaXE"><strong>exploration vs exploitation dilemma</strong></a>.</p>
 <p>Using value function, we could determine whether our policy is good enough or need to be improved. Basically, there are 2 main method for policy improvement, by using <strong>policy update</strong> and <strong>value update</strong>. Value based method perform update by choosing maximum value available for each state. Maximum value computed by taking all possible action and take the most promising ones. Value based method does not care about certain policy during learning phase. On the other hand, policy based certainly does care about policy. This method changing policy step by step until value obtained maximized. <strong>In short, value based is good for minimal state space, and policy based is good for minimal actions</strong>. For further explanation, I suggest you to read my references on the bottom of this page. My post here will focus only on my experiment about Atari Pong games.</p>
 <h1 id="get-to-the-observation">Get to the Observation</h1>
 <figure><img src="http://karpathy.github.io/assets/rl/pong.gif"/><figcaption>
@@ -327,7 +327,7 @@
 </figure>
 
 <p>Now, we are going to decide which method will we use. There are some concerns about that. First of all, our pong table is an example of <strong>continous environment</strong>. Even though our monitor screen is finite, of course we cannot enumerate all possible states of pong table condition. Hence, we still prefer using simpler method using policy based approach called policy gradient.</p>
-<p>In plain English, policy gradient is a method to compute rate of reward change over a policy applied at current state. Probabilities for each action will increase based on cumulative reward reached. Higher reward gotten, higher chance the action will be performed. I am going to use <a href="https://gym.openai.com"><code>gym</code></a> package from OpenAI. They provide numerous environment samples for machine learning training and testing. And the best part of it is they are given in <strong>discrete inputs</strong>.</p>
+<p>In plain English, policy gradient is a method to compute rate of reward change over a policy applied at current state. Probabilities for each action will increase based on cumulative reward reached. Higher reward gotten, higher chance the action will be performed. I am going to use <a href="https://openai.com/index/openai-gym-beta/"><code>gym</code></a> package from OpenAI. They provide numerous environment samples for machine learning training and testing. And the best part of it is they are given in <strong>discrete inputs</strong>.</p>
 <p>Next, we need to design our DNN structure. For the input, we are given a <code>210x160x3</code> byte array represent a window frame. We would like to preprocessing this frame to make it easier for our NN doing learning. This can be done by crop the outside border and convert all pixel to binary color (black and white). There are 6 available action in the environment given, so thats our output layer should look like. We will use 1 hidden layer with 800 neuron and mapping those to 6 output layer.</p>
 <figure><img src="https://koneko096.github.io/staging/img/pg-nn.png"/>
 </figure>
@@ -349,7 +349,7 @@
 <li><a href="https://medium.com/@m.alzantot/deep-reinforcement-learning-demysitifed-episode-2-policy-iteration-value-iteration-and-q-978f9e89ddaa">Deep Reinforcement Learning Demysitifed (Episode 2) — Policy Iteration, Value Iteration and Q-learning</a></li>
 <li><a href="http://karpathy.github.io/2016/05/31/rl/">Pong with Reinforcement Learning Tutorial</a></li>
 <li><a href="https://medium.com/@awjuliani/super-simple-reinforcement-learning-tutorial-part-2-ded33892c724">Simple RL Series with Tensorflow</a></li>
-<li><a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/pg.pdf">Lecture slide from David Silver</a></li>
+<li><a href="https://davidstarsilver.wordpress.com/wp-content/uploads/2025/04/lecture-7-policy-gradient-methods.pdf">Lecture slide from David Silver</a></li>
 <li><a href="https://github.com/dennybritz/reinforcement-learning/tree/master/PolicyGradient">Summary and additional resources about policy gradient method</a></li>
 </ul>
 </section>
